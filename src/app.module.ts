@@ -2,12 +2,11 @@ import { NewsApiModule } from './modules/news-api/news-api.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AxiosProvider } from './shared/providers/axios/axios.provider';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [NewsApiModule],
+  imports: [NewsApiModule, ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
   providers: [AppService],
-  exports: [AxiosProvider],
 })
 export class AppModule {}

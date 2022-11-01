@@ -1,16 +1,18 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SearchDto } from './dtos/search.dto';
 import { NewsApiService } from './news-api.service';
 
-@Controller('newapi')
+@ApiTags('News Api')
+@Controller('newsapi')
 export class NewsApiController {
   constructor(private newsApiService: NewsApiService) {}
 
   @Get()
-  async newsApi(@Query() search: SearchDto, @Res() res: Response) {
-    const { status, data } = await this.newsApiService.execute(search);
-
-    return res.status(status).send(data);
+  @ApiOperation({
+    summary: 'Busca todas as noticias referente a solicitação',
+  })
+  async newsApi(@Query() search: SearchDto) {
+    return this.newsApiService.execute(search);
   }
 }
