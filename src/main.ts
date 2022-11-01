@@ -23,7 +23,7 @@ async function bootstrap() {
 
   await app.listen(port);
   console.info(
-    `🚀🚀 App listening on port ${process.env.PORT} 🚀🚀 \n Documentação em http://localhost:${window.location.origin}/api`,
+    `🚀🚀 App listening on port ${port} 🚀🚀 \n Documentação em http://localhost:${port}/api`,
   );
 }
 bootstrap();
